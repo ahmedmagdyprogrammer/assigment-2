@@ -1,4 +1,3 @@
-﻿ 
 #include "MainComponent.h"
 #include "PlayerAudio.h"
 MainComponent::MainComponent()
@@ -6,11 +5,11 @@ MainComponent::MainComponent()
     addAndMakeVisible(player1);
     addAndMakeVisible(player2);
 
-    
+
     mixer.addInputSource(player1.getAudioSource(), false);
     mixer.addInputSource(player2.getAudioSource(), false);
 
-    setAudioChannels(0, 2);  
+    setAudioChannels(0, 2);
     setSize(900, 600);
 }
 
@@ -22,10 +21,10 @@ MainComponent::~MainComponent()
 
 void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate)
 {
-    
+
     player1.prepareToPlay(samplesPerBlockExpected, sampleRate);
     player2.prepareToPlay(samplesPerBlockExpected, sampleRate);
- 
+
     mixer.prepareToPlay(samplesPerBlockExpected, sampleRate);
 }
 
@@ -53,4 +52,3 @@ void MainComponent::resized()
     player1.setBounds(half.reduced(6));
     player2.setBounds(area.reduced(6));
 }
- 
