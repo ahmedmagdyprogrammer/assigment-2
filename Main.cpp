@@ -1,9 +1,7 @@
- 
-#include <JuceHeader.h>
+ #include <JuceHeader.h>
 #include "MainComponent.h"
 
- 
-class SimpleAudioPlayer : public juce::JUCEApplication
+ class SimpleAudioPlayer : public juce::JUCEApplication
 {
 public:
     const juce::String getApplicationName() override { return "Simple Audio Player"; }
@@ -42,5 +40,4 @@ private:
 
     std::unique_ptr<MainWindow> mainWindow;
 };
-
 START_JUCE_APPLICATION(SimpleAudioPlayer)
