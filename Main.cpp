@@ -1,7 +1,6 @@
 #include <JuceHeader.h>
 #include "MainComponent.h"
 
-
 class SimpleAudioPlayer : public juce::JUCEApplication
 {
 public:
@@ -40,6 +39,5 @@ private:
     };
 
     std::unique_ptr<MainWindow> mainWindow;
-
 };
 START_JUCE_APPLICATION(SimpleAudioPlayer)
