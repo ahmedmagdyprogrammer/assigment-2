@@ -4,8 +4,6 @@ MainComponent::MainComponent()
 {
     addAndMakeVisible(player1);
     addAndMakeVisible(player2);
-
-
     mixer.addInputSource(player1.getAudioSource(), false);
     mixer.addInputSource(player2.getAudioSource(), false);
 
