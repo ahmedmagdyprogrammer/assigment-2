@@ -1,7 +1,6 @@
 #pragma once
 #include <JuceHeader.h>
 #include "PlayerGUI.h"
-
 class MainComponent : public juce::AudioAppComponent
 {
 public:
@@ -23,3 +22,4 @@ private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(MainComponent)
 };
+
