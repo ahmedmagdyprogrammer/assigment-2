@@ -44,9 +44,6 @@ PlayerGUI::PlayerGUI()
     speedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 60, 20);
     addAndMakeVisible(speedSlider);
 
-
-
-
     addAndMakeVisible(progressSlider);
     progressSlider.setRange(0.0, 1.0);
     progressSlider.setValue(0.0);
