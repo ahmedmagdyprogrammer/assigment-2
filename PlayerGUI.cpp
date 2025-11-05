@@ -1,4 +1,3 @@
-﻿ 
 #include "PlayerGUI.h"
 #include "PlayerAudio.h"
 
@@ -19,11 +18,11 @@ void PlayerGUI::releaseResources()
 
 void PlayerGUI::paint(juce::Graphics& g)
 {
-    g.fillAll(juce::Colour::fromRGB(20,30,60));
+    g.fillAll(juce::Colour::fromRGB(20, 30, 60));
 }
 
 PlayerGUI::PlayerGUI()
-{ 
+{
     for (auto* btn : { &loadButton, &restartButton, &stopButton, &playButton, &loopButton,
                        &goToStartButton, &goToEndButton, &muteButton, &setAButton, &setBButton, &clearABButton })
     {
@@ -31,11 +30,11 @@ PlayerGUI::PlayerGUI()
         addAndMakeVisible(btn);
     }
     playlistBox.setModel(this);
-    addAndMakeVisible(playlistBox); 
+    addAndMakeVisible(playlistBox);
     volumeSlider.setRange(0.0, 1.0, 0.01);
     volumeSlider.setValue(prevVolume);
     volumeSlider.addListener(this);
-    addAndMakeVisible(volumeSlider); 
+    addAndMakeVisible(volumeSlider);
     speedSlider.setRange(0.5, 2.0, 0.01);
     speedSlider.setValue(1.0);
     speedSlider.addListener(this);
@@ -44,10 +43,10 @@ PlayerGUI::PlayerGUI()
     speedSlider.setColour(juce::Slider::thumbColourId, juce::Colours::red);
     speedSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, false, 60, 20);
     addAndMakeVisible(speedSlider);
-    
 
 
-  
+
+
     addAndMakeVisible(progressSlider);
     progressSlider.setRange(0.0, 1.0);
     progressSlider.setValue(0.0);
@@ -56,24 +55,24 @@ PlayerGUI::PlayerGUI()
     progressSlider.setChangeNotificationOnlyOnRelease(false);
     progressSlider.addListener(this);
 
-  
+
     positionLabel.setText("0:00 / 0:00", juce::dontSendNotification);
     addAndMakeVisible(positionLabel);
 
-    
-    
+
+
     addAndMakeVisible(abLabel);
     abLabel.setText("A: -- B: -- ", juce::dontSendNotification);
     abLabel.setColour(juce::Label::textColourId, juce::Colours::white);
     abLabel.setJustificationType(juce::Justification::centred);
-     
+
     addAndMakeVisible(metadataLabel);
     metadataLabel.setText("No file loaded", juce::dontSendNotification);
     metadataLabel.setColour(juce::Label::textColourId, juce::Colours::white);
     metadataLabel.setJustificationType(juce::Justification::centredLeft);
 
 
-    startTimerHz(25);  
+    startTimerHz(25);
     setSize(900, 260);
 
     loopButton.setButtonText("Loop:OFF");
@@ -111,15 +110,12 @@ void PlayerGUI::resized()
 
 
     y += 50;
-     
+
     setAButton.setBounds(margin + 180, y - 3, 70, 26);
     setBButton.setBounds(margin + 260, y - 3, 70, 26);
     clearABButton.setBounds(margin + 340, y - 3, 90, 26);
     abLabel.setBounds(margin + 450, y - 3, 140, 26);
     speedSlider.setBounds(margin, y, 150, 150);
-
-
-    
 
     playlistBox.setBounds(getWidth() - 310, margin + 10, 300, getHeight() - 40);
 }
@@ -144,7 +140,7 @@ void PlayerGUI::listBoxItemClicked(int row, const juce::MouseEvent&)
 {
     if (row >= 0 && row < playerAudio.playlistSources.size()) {
         VideoIndex = row;
-        playerAudio.playTrack(row);
+        playerAudio.playsound(row);
     }
 }
 
@@ -310,7 +306,7 @@ void PlayerGUI::sliderValueChanged(juce::Slider* slider)
             playerAudio.setPosition(newPosition);
         }
     }
-    else if (slider == &progressSlider) 
+    else if (slider == &progressSlider)
     {
         double length = playerAudio.getLength();
         if (length > 0)
@@ -347,19 +343,19 @@ void PlayerGUI::timerCallback()
     double length = playerAudio.getLength();
     if (length > 0)
     {
-        if (!isUserDraggingSlider)
+        if (!isUserDraggingSlider) {
             progressSlider.setValue(pos / length, juce::dontSendNotification);
-        
-        int currentMins = int(pos) / 60;
-        int currentSecs = int(pos) % 60;
-        int totalMins = int(length) / 60;
-        int totalSecs = int(length) % 60;
 
-        positionLabel.setText(juce::String(currentMins) + ":" + juce::String(currentSecs).paddedLeft('0', 2) +
-            " / " + juce::String(totalMins) + ":" + juce::String(totalSecs).paddedLeft('0', 2),
-            juce::dontSendNotification);
+            int currentMins = int(pos) / 60;
+            int currentSecs = int(pos) % 60;
+            int totalMins = int(length) / 60;
+            int totalSecs = int(length) % 60;
 
-         
+            positionLabel.setText(juce::String(currentMins) + ":" + juce::String(currentSecs).paddedLeft('0', 2) +
+                " / " + juce::String(totalMins) + ":" + juce::String(totalSecs).paddedLeft('0', 2),
+                juce::dontSendNotification);
+        }
+
     }
 
     if (isABLooping)
