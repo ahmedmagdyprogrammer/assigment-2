@@ -36,7 +36,6 @@ private:
             juce::JUCEApplication::getInstance()->systemRequestedQuit();
         }
     };
-
     std::unique_ptr<MainWindow> mainWindow;
 };
 START_JUCE_APPLICATION(SimpleAudioPlayer)
