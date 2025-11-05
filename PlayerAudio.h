@@ -1,4 +1,3 @@
- 
 #pragma once
 #include <JuceHeader.h>
 #include <vector>
@@ -17,7 +16,7 @@ public:
     // Controls
     bool loadFile(const juce::File& file);
     void addFileToPlaylist(const juce::File& file);
-    void playTrack(int index);
+    void playsound(int index);
     void play();
     void stop();
     void setLooping(bool shouldLoop);
@@ -27,9 +26,9 @@ public:
     double getPosition() const;
     double getLength() const;
     void setSpeed(double newSpeed);
-    int getNumTracks() const;
+    int getNumFiles() const;
     int VideoIndex = -1;
-    const juce::File& getTrackFile(int index) const;
+    const juce::File& getSoundFile(int index) const;
 private:
     juce::AudioFormatManager formatManager;
     std::unique_ptr<juce::AudioFormatReaderSource> readerSource;
