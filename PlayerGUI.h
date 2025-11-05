@@ -1,4 +1,3 @@
- 
 #pragma once
 #include <JuceHeader.h>
 #include "PlayerAudio.h"
@@ -16,11 +15,11 @@ public:
     void resized() override;
     void paint(juce::Graphics& g) override;
 
-     
+
     void prepareToPlay(int samplesPerBlockExpected, double sampleRate);
     void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill);
     void releaseResources();
-     
+
     juce::AudioSource* getAudioSource() { return &playerAudio; }
     int getNumRows() override;
     void paintListBoxItem(int rowNumber, juce::Graphics& g, int width, int height, bool rowIsSelected) override;
@@ -29,7 +28,7 @@ private:
     PlayerAudio playerAudio;
     juce::ListBox playlistBox;
     int VideoIndex = -1;
-    
+
     juce::TextButton loadButton{ "Load File" };
     juce::TextButton restartButton{ "Restart" };
     juce::TextButton stopButton{ "Stop" };
@@ -44,22 +43,24 @@ private:
 
     juce::Slider volumeSlider;
     juce::Slider speedSlider;
-    juce::Slider progressSlider; 
-     
+    juce::Slider progressSlider;
+
     juce::Label abLabel;
-    juce::Label positionLabel;  
+    juce::Label positionLabel;
     juce::Label metadataLabel;
+
+
 
     std::unique_ptr<juce::FileChooser> fileChooser;
 
     bool muted = false;
-    float prevVolume = 0.5f; 
+    float prevVolume = 0.5f;
 
     double loopStart = 0.0;
     double loopEnd = 0.0;
     bool isABLooping = false;
 
-    bool isUserDraggingSlider = false; 
+    bool isUserDraggingSlider = false;
     void buttonClicked(juce::Button* button) override;
     void sliderValueChanged(juce::Slider* changedSlider) override;
     void sliderDragStarted(juce::Slider* changedSlider) override;
