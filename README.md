@@ -30,16 +30,4 @@ PlayerAudio.cpp / .h → Handles all audio processing, playback, and playlist ma
 
 Main.cpp → Application entry point that launches the main window
 
-
-How to Run:
-
-1. Open the project in JUCE Projucer or Visual Studio
-
-
-2. Build the project in Debug or Release mode
-
-
-3. Run the application — two audio players will appear on the screen
-
-
-4. Load audio files and start playing! 
+ 
