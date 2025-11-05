@@ -1,10 +1,9 @@
-﻿ 
 #include "PlayerAudio.h"
 
 PlayerAudio::PlayerAudio()
 {
     formatManager.registerBasicFormats();
-    
+
     resamplingSource = std::make_unique<juce::ResamplingAudioSource>(&transportSource, false, 2);
 }
 
@@ -30,7 +29,7 @@ void PlayerAudio::getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferTo
     else
         transportSource.getNextAudioBlock(bufferToFill);
 
-     
+
     if (looping && VideoIndex >= 0)
     {
         double currentPos = transportSource.getCurrentPosition();
@@ -61,12 +60,12 @@ void PlayerAudio::addFileToPlaylist(const juce::File& file)
         playlistFiles.push_back(file);
     }
 
-    
+
     if (VideoIndex == -1)
-        playTrack(0);
+        playsound(0);
 }
 
-void PlayerAudio::playTrack(int index)
+void PlayerAudio::playsound(int index)
 {
     if (index < 0 || index >= (int)playlistSources.size())
         return;
@@ -96,12 +95,12 @@ void PlayerAudio::setSpeed(double newSpeed)
     if (resamplingSource)
         resamplingSource->setResamplingRatio(playbackSpeed);
 }
-int PlayerAudio::getNumTracks() const
+int PlayerAudio::getNumFiles() const
 {
     return (int)playlistFiles.size();
 }
 
-const juce::File& PlayerAudio::getTrackFile(int index) const
+const juce::File& PlayerAudio::getSoundFile(int index) const
 {
     jassert(index >= 0 && index < (int)playlistFiles.size());
     return playlistFiles[index];
