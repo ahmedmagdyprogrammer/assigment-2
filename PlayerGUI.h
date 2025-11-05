@@ -14,8 +14,6 @@ public:
 
     void resized() override;
     void paint(juce::Graphics& g) override;
-
-
     void prepareToPlay(int samplesPerBlockExpected, double sampleRate);
     void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill);
     void releaseResources();
@@ -66,6 +64,5 @@ private:
     void sliderDragStarted(juce::Slider* changedSlider) override;
     void sliderDragEnded(juce::Slider* changedSlider) override;
     void timerCallback() override;
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PlayerGUI)
+   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PlayerGUI)
 };
