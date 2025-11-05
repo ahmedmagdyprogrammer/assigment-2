@@ -1,5 +1,4 @@
 #include "PlayerAudio.h"
-
 PlayerAudio::PlayerAudio()
 {
     formatManager.registerBasicFormats();
@@ -105,3 +104,4 @@ const juce::File& PlayerAudio::getSoundFile(int index) const
     jassert(index >= 0 && index < (int)playlistFiles.size());
     return playlistFiles[index];
 }
+
